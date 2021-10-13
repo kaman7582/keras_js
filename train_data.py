@@ -66,7 +66,8 @@ if os.path.exists('./models/c2h2_analysis.model') == False:
     model.add(Dense(1))
     model.compile(loss='mae', optimizer='adam')
     history = model.fit(trainx,trainy,epochs=100,batch_size=50,verbose=2,shuffle=False)
-    model.save('./models/c2h2_analysis.model')
+    #model.save('./models/c2h2_analysis.model')
+    tfjs.converters.save_keras_model(model, "./models")
 else:
 #pyplot.plot(history.history['loss'], label='train')
 #pyplot.plot(history.history['val_loss'], label='test')
