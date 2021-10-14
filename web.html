@@ -1,19 +1,18 @@
 <html>
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-        <script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>        <script>
         async function fn() {
-            let model0 = await tf.loadLayersModel('https://raw.githubusercontent.com/kaman7582/keras_js/main/models/model.json')
+            let model = await tf.loadLayersModel('https://raw.githubusercontent.com/kaman7582/keras_js/main/models/model.json')
             .then(model => {
                 console.log('model loaded');
-                model.summary();
             })
             .catch(err => {
                 console.log(err);
             });
-            
+            model.predict(tf.tensor2d([1, 2, 3, 4], [2, 2]))
+            var data = tf.tensor2d([1, 2, 3, 4], [2, 2])
             const model1 = await tf.loadLayersModel('https://hsaga.github.io/FH/tfjs/tfjs_model0/model0.json');
-            
+            let prediction1 =  model1.predict(data)
         }
         fn();
         </script>
