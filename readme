@@ -1,0 +1,6 @@
+https://raw.githubusercontent.com/kaman7582/keras_js/main/models/model.json
+
+exports.biden = tf.loadLayersModel('http://localhost:5000/models/biden_15_chars/model.json');
+
+if (!this.model) this.model = await tf.loadLayersModel('file://' + this.modelpath + '/model.json');
+

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+        <script>
+        async function fn() {
+            const model0 = await tf.loadLayersModel('https://raw.githubusercontent.com/kaman7582/keras_js/main/models/model.json')
+            .then(model => {
+                console.log('model loaded');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+            var data = tf.tensor2d([1, 2, 3, 4], [2, 2])
+            const model1 = await tf.loadLayersModel('https://hsaga.github.io/FH/tfjs/tfjs_model0/model0.json');
+            let prediction1 =  model1.predict(data)
+        }
+        fn();
+        </script>
+    </head>
+    <body>
+        This is my AI web
+    </body>
+</html>

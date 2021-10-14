@@ -60,6 +60,7 @@ trainy = datay[:train_len]
 testx = datax[train_len:,:,:]
 testy = datay[train_len:]
 #LSTM(CELL_SIZE, input_shape = (TIME_STEPS,INPUT_SIZE))
+'''
 if os.path.exists('./models/c2h2_analysis.model') == False:
     model = Sequential()
     model.add(LSTM(50, input_shape=(trainx.shape[1], trainx.shape[2])))
@@ -79,3 +80,14 @@ else:
     plt.plot(datax[:,0],color='red')
     plt.plot(yhat[:,0],color='blue')
     plt.show()
+'''
+
+
+    #===========================
+model = Sequential()
+model.add(LSTM(50, input_shape=(trainx.shape[1], trainx.shape[2])))
+model.add(Dense(1))
+model.compile(loss='mae', optimizer='adam')
+history = model.fit(trainx,trainy,epochs=100,batch_size=50,verbose=2,shuffle=False)
+#model.save('./models/c2h2_analysis.model')
+tfjs.converters.save_keras_model(model, "./models")
