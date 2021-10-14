@@ -4,3 +4,15 @@ exports.biden = tf.loadLayersModel('http://localhost:5000/models/biden_15_chars/
 
 if (!this.model) this.model = await tf.loadLayersModel('file://' + this.modelpath + '/model.json');
 
+        model.fit(x, y).then(() => {
+            model.predict(tf.tensor2d([5], [1, 1])).print();
+        });
+
+
+            let test = tf.tensor2d([5,6,7,8],[4,1]);
+            console.log("train");
+            model.predict(test).print();
+
+            
+            var data = tf.tensor2d([1, 2, 3, 4], [2, 2])
+            const output = await model0.predict(data).print()
