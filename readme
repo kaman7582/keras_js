@@ -13,6 +13,7 @@ if (!this.model) this.model = await tf.loadLayersModel('file://' + this.modelpat
             console.log("train");
             model.predict(test).print();
 
-            
+
             var data = tf.tensor2d([1, 2, 3, 4], [2, 2])
             const output = await model0.predict(data).print()
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>   
