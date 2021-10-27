@@ -17,3 +17,45 @@ if (!this.model) this.model = await tf.loadLayersModel('file://' + this.modelpat
             var data = tf.tensor2d([1, 2, 3, 4], [2, 2])
             const output = await model0.predict(data).print()
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>   
+------------------------
+import * as tf from '@tensorflow/tfjs';
+
+async evaluateModel() {
+    imageData: ImageData = this.getCanvas();
+    const modelURL: string = './../../assets/models/model.json';
+
+    let img: tf.Tensor<tf.Rank.R3> = tf.fromPixels(imageData);
+    img = tf.image.resizeBilinear(img, [32, 32]);
+    img = img.expandDims(0);
+
+    await tf.loadModel(modelURL).then(model => {
+        const output: any = model.predict(img);
+        const results: number = output.argMax(1).dataSync()[0];
+        console.log(results);
+    }
+
+
+Replace this line const model = await tf.loadLayersModel('AI-Model/model.json'); 
+by const model = await tf.loadGraphModel('http:AI-Model/model.json');
+
+
+let model = await tf.loadLayersModel('https://raw.githubusercontent.com/kaman7582/keras_js/main/models/model.json')
+
+-------------------http server-----------------
+python -m http.server
+
+用http://127.0.0.1:8000即可访问目录下内容
+
+建议监盘人员密切关注氢气数据，如有氢气增量告警及时上报。
+
+建议监盘人员持续关注，氢气超过200μL/L或者突增再报警。
+
+-----------------------------------------------
+uvicorn fastSer:app --reload
+----------------------------------------
+
+
+2.17957907 0.84167405 0.60890032 0.16778223 0.64880036 
+0.
+ 0.         0.         0.         0.         0.
+0.        ]

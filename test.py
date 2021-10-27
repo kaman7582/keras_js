@@ -1,6 +1,8 @@
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
+'''
+
 data = np.random.ranf(10)
 data = data.reshape(-1,1)
 mm = MinMaxScaler()
@@ -12,3 +14,7 @@ print("----------------------------------------")
 origin_data = mm.inverse_transform(mm_data)
 print(origin_data)
 print("----------------------------------------")
+'''
+
+val = [1,2,3,4,5]
+print(val[3:])

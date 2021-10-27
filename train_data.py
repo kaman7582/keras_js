@@ -13,6 +13,8 @@ import numpy as np
 from math import sqrt
 import os
 
+'''
+
 epochs=1000
 SAMPLE_COL = 5
 look_back = 5
@@ -79,3 +81,6 @@ else:
     plt.plot(datax[:,0],color='red')
     plt.plot(yhat[:,0],color='blue')
     plt.show()
+'''
+
+#ten days to predict 3 days

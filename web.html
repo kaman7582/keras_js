@@ -3,11 +3,13 @@
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>   
         <script>
         async function fn() {
-            let model = await tf.loadLayersModel('https://raw.githubusercontent.com/kaman7582/keras_js/main/models/model.json')
+            let model = await tf.loadLayersModel('http://127.0.0.1:5000/models/model.json')
             .then(model => {
                 console.log('model loaded');
                 var data = tf.tensor3d([1, 2, 3, 4,5], [1, 5,1]);
-                model.predict(data).print();
+                var result = model.predict(data);
+                console.log(Array.from(result.dataSync()))
+                document.write("prediction result:"+Array.from(result.dataSync()))
             })
             .catch(err => {
                 console.log(err);
