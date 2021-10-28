@@ -2,7 +2,7 @@ from pydantic.types import Json
 import requests
 from pandas import read_csv
 import json
-
+import numpy as np
 #half_plus_two
 #192.168.0.180 port 8501
 '''
@@ -20,16 +20,27 @@ tensorflow_model_server --port=8500 --rest_api_port=8501 --model_name=${MODEL_NA
 
 
 '''
+all_data=read_csv("data/data_1.csv")
+
+val = list(all_data['1#'])
+
+history = val[-5:]
+
+history = np.array(history).reshape(-1,1)
 
 
 payload = {
-    "instances": [1.0, 2.0, 5.0]
+    "instances": [history.tolist()]
 }
+print(payload)
+req_data = json.dumps(payload)
+
+print(req_data)
 
 def send_test():
-    url="http://192.168.0.180:8501/v1/models/half_plus_two:predict"
-    query_data = {"instances": [1.0, 2.0, 5.0]}
-    res =requests.post(url, json=query_data)
+    url="http://192.168.0.180:8501/v1/models/c2h2:predict"
+    query_data = {"instances": [[[0.1]]]}
+    res =requests.post(url, json=payload)
     print(json.loads(res.content.decode('utf-8')))
 
 
